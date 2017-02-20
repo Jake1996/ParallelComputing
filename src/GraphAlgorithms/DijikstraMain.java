@@ -7,7 +7,12 @@ import java.util.PriorityQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
+/**
+ * Dijikstras algorithm is called for every vertex to generate the single source shortest distance for each vertex
+ * The algorithm is called parallely for every vertex .The task is submitted to a thread pool.
+ * @author jake
+ *
+ */
 public class DijikstraMain {
 	public static void main(String args[]) throws InterruptedException {
 		FastReader in = new FastReader();
