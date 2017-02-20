@@ -13,8 +13,11 @@ public class ThreadPool{
     	int processors = Runtime.getRuntime().availableProcessors();
     	ExecutorService service = Executors.newFixedThreadPool(processors);
     	for (int i =0; i<100; i++){
-    		service.submit(new Task(i));
+    		service.execute(new Task(i));
     	}
+    	service.shutdown();
+    	while(!service.isTerminated()) {}
+    	System.out.println("All tasks Done");
     } 
 }
 

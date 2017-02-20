@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 
 
 public class DijikstraMain {
-	public static void main(String args[]) {
+	public static void main(String args[]) throws InterruptedException {
 		FastReader in = new FastReader();
 		int n = in.nextInt();
 		int m = in.nextInt();
@@ -32,11 +32,13 @@ public class DijikstraMain {
     	Dijikstra.graph = g;
 		for (int i =0; i<n; i++){
 			d = new Dijikstra(i);
-    		service.submit(d);
+    		service.execute(d);
     		shortest[i] = d.dist;
     	}
+		service.shutdown();
+		while(!service.isTerminated()) {}
 		for(int i=0;i<n;i++) {
-			Arrays.toString(shortest[i]);
+			System.out.println(Arrays.toString(shortest[i]));
 		}
 	}
 	static class edge{
@@ -83,6 +85,7 @@ public class DijikstraMain {
 				if(visited[u]) continue;
 				visited[u] = true;
 				for(edge e:graph.get(u)) {
+					//System.out.println("here");
 					v = e.v;
 					w = e.weight;
 					if(dist[u] + w < dist[v]) {
