@@ -30,6 +30,7 @@ public class DijikstraMain {
 			g.get(u).add(new edge(w, v));
 		}
 		in.close();
+		long ti1 = System.nanoTime();
 		long shortest[][] = new long[n][];
 		int processors = Runtime.getRuntime().availableProcessors();
 		ExecutorService service = Executors.newFixedThreadPool(processors*2);
@@ -42,9 +43,11 @@ public class DijikstraMain {
     	}
 		service.shutdown();
 		while(!service.isTerminated()) {}
-		for(int i=0;i<n;i++) {
-			System.out.println(Arrays.toString(shortest[i]));
-		}
+		long ti2 = System.nanoTime();
+		System.out.println(ti2-ti1);
+//		for(int i=0;i<n;i++) {
+//			System.out.println(Arrays.toString(shortest[i]));
+//		}
 	}
 	static class edge{
 		long weight;
@@ -93,7 +96,7 @@ public class DijikstraMain {
 					//System.out.println("here");
 					v = e.v;
 					w = e.weight;
-					if(dist[u] + w < dist[v]) {
+					if(dist[u]!=Long.MAX_VALUE&&dist[u] + w < dist[v]) {
 						dist[v] = w + dist[u];
 						Q.add(new edge(dist[v], v));
 					}
