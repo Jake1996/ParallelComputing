@@ -28,8 +28,6 @@ public class BathroomStalls {
 		for (int i =0; i<temp; i++){
 			System.out.println(result[i].output);
 		}
-
-
 	}
 	static public class Task implements Runnable {
 		private int taskId;
@@ -55,7 +53,6 @@ public class BathroomStalls {
 
 					output = "Case #"+(taskId)+": "+(l+add)+" "+r;
 			}
-
 		}
 	public static long largestPower(long n){
 		int count = 0;
