@@ -4,6 +4,7 @@
 https://github.com/saru95/DSA/blob/master/RabinKarp.cpp
 
 ## Run Instructions
+For the serial code :
 ```
 g++ RabinKarpSerial.cpp
 ./a.out < strmatch_dna_ip2.txt 
